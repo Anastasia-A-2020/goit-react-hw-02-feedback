@@ -21,24 +21,46 @@ class Feedback extends Component {
     }));
   };
 
+  countTotalFeedback() {
+    const feedbacksValues = Object.values(this.state);
+
+    return feedbacksValues.reduce((total, value) => total + value, 0);
+  }
+
+  countPositiveFeedbackPercentage() {
+    const total = this.countTotalFeedback();
+    const { good } = this.state;
+
+    return Math.round((good * 100) / total);
+  }
+
   render() {
+    const { good, neutral, bad } = this.state;
+    const { options } = this.props;
+
     return (
       <>
         <h1>Please leave feedback</h1>
         <div>
-          {this.props.options.map((label, index) => (
-            <button key={index} onClick={() => this.handleIncrement(label)}>
+          {options.map((label) => (
+            <button key={label} onClick={() => this.handleIncrement(label)}>
               {label}
             </button>
           ))}
         </div>
 
         <h1>Statistics</h1>
-        <p>Good: {this.state.good}</p>
-        <p>Neutral: {this.state.neutral}</p>
-        <p>Bad: {this.state.bad}</p>
-        <p>Total:</p>
-        <p>Positive feedback:</p>
+        <p>Good: {good}</p>
+        <p>Neutral: {neutral}</p>
+        <p>Bad: {bad}</p>
+        <p>Total: {this.countTotalFeedback()} </p>
+        <p>
+          Positive feedback:
+          {this.countPositiveFeedbackPercentage()
+            ? this.countPositiveFeedbackPercentage()
+            : 0}
+          %
+        </p>
       </>
     );
   }
