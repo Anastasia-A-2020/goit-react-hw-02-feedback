@@ -1,0 +1,7 @@
+h1 > button {
+  display: inline-flex;
+}
+
+button:not(:last-of-type) {
+  margin-right: 5px;
+}
