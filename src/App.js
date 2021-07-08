@@ -31,7 +31,6 @@ class App extends Component {
 
   render() {
     const { good, neutral, bad } = this.state;
-    console.log(this.handleIncrement({ good }));
 
     return (
       <>
