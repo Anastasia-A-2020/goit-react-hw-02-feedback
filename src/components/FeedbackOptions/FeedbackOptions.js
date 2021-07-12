@@ -1,18 +1,15 @@
 import React from "react";
 import PropTypes from "prop-types";
-import Section from "../Section";
 import "./FeedbackOptions.module.css";
 
 const FeedbackOptions = ({ buttons, onLeaveFeedback }) => {
   return (
     <div>
-      <Section title="Please leave feedback">
-        {Object.keys(buttons).map((button) => (
-          <button key={button} name={button} onClick={onLeaveFeedback}>
-            {button}
-          </button>
-        ))}
-      </Section>
+      {Object.keys(buttons).map((button) => (
+        <button key={button} name={button} onClick={onLeaveFeedback}>
+          {button}
+        </button>
+      ))}
     </div>
   );
 };
